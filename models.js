@@ -49,3 +49,41 @@ const basket = [
     weight: 100 // в граммах
   }
 ];
+
+// Create and show categories 
+
+let categoriesConteiner = document.getElementById("categories");
+let searchProduct = document.getElementById("search-product");
+   
+function  showCategoties( wrapperElem) {
+  for (let i = 0; i < categories.length; i++) {
+    const fieldForCategoryItem = document.createElement("div");
+    const categoryItemTitle = document.createElement("h2");
+    const categoryItemImage = document.createElement("img");
+    const categoryItemDescription = document.createElement("p");
+
+    categoryItemTitle.innerHTML = categories[i].name;
+    categoryItemImage.setAttribute("src", categories[i].imageUrl);
+    categoryItemDescription.innerHTML = categories[i].description;
+
+    fieldForCategoryItem.append(categoryItemTitle, categoryItemImage, categoryItemDescription);
+    fieldForCategoryItem.className = "categories_item";
+
+    // fieldForCategoryItem.innerHTML =
+    // categories[i].name + " " + categories[i].imageUrl + " " + categories[i].description;
+    wrapperElem.append(fieldForCategoryItem);
+  }
+}
+
+function createProductElementOption(product) {
+  for (let i = 0; i < products.length; i++) {
+    const optionProductElement = document.createElement('option');
+    optionProductElement.value = product[i].name;
+    optionProductElement.innerHTML = product[i].name;
+    searchProduct.appendChild(optionCityElement);
+  }
+}
+
+document.body.onload = showCategoties(categoriesConteiner);
+
+createProductElementOption (products);

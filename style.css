@@ -30,24 +30,53 @@ html {
     max-width: 960px;
     margin: 0 auto;
     padding: 0 10px;
-    color: aliceblue;
+    color: #333333;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   }
 
   .header {
      width: 100%;
      margin-bottom: 50px;
      padding: 15px;
-     background-color: rgba(132, 204, 44, 1);;
+     color: antiquewhite;
+     background-color: rgba(132, 204, 44, 1);
   }
   .header_inner {
       display: flex;
       justify-content: space-between;
+      vertical-align: center;
   }
 
-  #product {
-      min-width: 500px;
+  #search-product {
+      min-width: 350px;
       margin-left: 20px;
       padding: 10px;
       border-radius: 5px;
       border: none;
   }
+
+  .total {
+    margin-bottom: 40px;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 20px;
+  }
+
+.title {
+  text-align: center;
+  text-transform: uppercase;
+  font-style: italic;
+}
+#categories {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.categories_item {
+  max-width: 300px;
+  padding: 10px;
+  text-align: center;
+  border: 3px solid #ffffff;
+  overflow: hidden;
+
+}
