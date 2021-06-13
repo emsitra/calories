@@ -80,7 +80,7 @@ function createProductElementOption(product) {
     const optionProductElement = document.createElement('option');
     optionProductElement.value = product[i].name;
     optionProductElement.innerHTML = product[i].name;
-    searchProduct.appendChild(optionCityElement);
+    searchProduct.appendChild(optionProductElement);
   }
 }
 
