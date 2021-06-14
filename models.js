@@ -53,7 +53,7 @@ const basket = [
 // Create and show categories 
 
 let categoriesConteiner = document.getElementById("categories");
-let searchProduct = document.getElementById("search-product");
+let searchProduct = document.getElementById("product-list");
    
 function  showCategoties( wrapperElem) {
   for (let i = 0; i < categories.length; i++) {
