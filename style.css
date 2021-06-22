@@ -26,6 +26,7 @@ html {
   body {
     background-color: rgba(132, 204, 44, 0.5);
   }
+
   .container {
     max-width: 960px;
     margin: 0 auto;
@@ -79,4 +80,18 @@ html {
   border: 3px solid #ffffff;
   overflow: hidden;
 
+}
+.product_item {
+  width:300px;
+  height: 300px;
+  background-color: rgba(28, 235, 45, 0.994);
+  
+   position: absolute;
+   top: 33%;
+  left: 40%;  
+  z-index: 2;
+  align-items: center;
+}
+.product_item h1 {
+  text-align: center;
 }
