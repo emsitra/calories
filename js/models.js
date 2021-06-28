@@ -21,7 +21,7 @@ const categories = [
 const products = [
   {
     id: 1,
-    name: "Сморчки свежие",
+    name: "Сморчки зеленые",
     imageUrl:
       "https://supercalorizator.ru/instruments/calorizator/images/products/35.jpg",
     categoryIds: [1],
