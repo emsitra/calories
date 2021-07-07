@@ -5,7 +5,7 @@ const categories = [
     imageUrl:
       "https://supercalorizator.ru/instruments/calorizator/images/menu/1.png",
     description:
-      'Список грибов с данными об их энергетической ценности, содержании белков, жиров и углеводов. Калорийность грибов указана в левой нижней части каждого пункта таблицы под надписью "Ккал".',
+      'Список грибов',
     productIds: [1, 2, 3, 7],
   },
   {
@@ -16,6 +16,15 @@ const categories = [
     description: "Список фруктов",
     productIds: [4, 5, 6, 7],
   },
+  {
+    id: 3,
+    name: "Крупы",
+    imageUrl:
+      " https://supercalorizator.ru/instruments/calorizator/images/products/224.jpg",
+    description: "Список круп",
+    productIds: [4, 5, 6, 7],
+  },
+ 
 ];
 
 const products = [
