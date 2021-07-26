@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <title>category</title>
+  </head>
+  <body>       
+      <header class="header">
+          <div class="header_inner container">                       
+            <a class="logo" href="#">
+                <img src="#" alt="logo">
+            </a> 
+           <div class="input-inner">
+            <span>Найти продукт: </span>
+            <input type="text" id= "search-product" list="product-list">
+            <datalist id="product-list"> 
+           </div>    
+        </div>       
+      </header>
+      <main class="container">
+           <div class="total" > 
+              Итого:
+              <span id="total"></span>
+             
+              <!-- <div id="product-popup_inner" class="product-popup_inner"> 
+                <p class="product-popup_name"></p> 
+                 <div class="product-popup_box">
+                      <img class="product-popup_img" src="#" alt="">
+                      <p id="kcal">354</p>
+                      <span>Ккал</span> 
+                 </div>
+       
+              </div>  -->
+          </div> 
+          <div class="filter">            
+          </div>
+          <div  id="category">
+            <h1 id = "category_name"></h1>
+          </div>         
+          
+      </main>
+      <footer></footer>
+    
+    <script src="./js/models.js"></script>
+    <script src="./js/main.js"></script>
+    <script src="./js/categories.js"></script>
+    <script src="./js/products.js"></script>
+  </body>
+</html>

@@ -78,9 +78,5 @@ const basket = [
   {
     productId: 1,
     weight: 300, // в граммах
-  },
-  {
-    productId: 3,
-    weight: 100, // в граммах
-  },
+  }
 ];

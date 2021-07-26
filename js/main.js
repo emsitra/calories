@@ -12,8 +12,9 @@ let proteinsProductElement = document.getElementById("proteins");
 let fatsProductElement = document.getElementById("fats");
 let carbohydratesProductElement = document.getElementById("carbohydrates");
 let weightProductSelectElement = document.getElementById("product-weight");
-let addProduct = document.querySelector("#add-product");
+let addProductBtn = document.querySelector("#add-product");
 let totalResult = document.getElementById("total");
+
 
 document.body.onload = init;
 

@@ -1,37 +1,28 @@
 // find and show selected product
 
 let foundProduct = {};
-let totalWeight = null;
-let sumKcalProduct = null;
-let totalKkal = null;
+let kcalProduct = 0;
+let totalKcal = 0;
 
 productSelectElement.addEventListener("input", (event) => {
   foundProduct = products.find(
     (product) => product.name === event.target.value
   );
   if (foundProduct) {
-    productElement.className = "active";
-    nameProductElement.textContent = foundProduct.name;
-    imageProductElement.src = foundProduct.imageUrl;
-    kcalProductElement.textContent = foundProduct.kcal;
-    proteinsProductElement.textContent = foundProduct.proteins;
-    fatsProductElement.textContent = foundProduct.fats;
-    carbohydratesProductElement.textContent = foundProduct.carbohydrates;
-    updateThis(productSelectElement, null);
-  }
+    buildPopupProductElement(foundProduct);
+  }  
 });
 
 weightProductSelectElement.addEventListener("input", (event) => {
-  const productElementWeight = event.target.value / 100;
-  sumKcalProduct = productElementWeight * foundProduct.kcal;
-  let sumProteinsProduct = productElementWeight * foundProduct.proteins;
-  let sumFatsProduct = productElementWeight * foundProduct.fats;
-  let sumCarbohydratesProduct =
-    productElementWeight * foundProduct.carbohydrates;
-  kcalProductElement.textContent = sumKcalProduct.toFixed(2);
-  proteinsProductElement.textContent = sumProteinsProduct.toFixed(2);
-  fatsProductElement.textContent = sumFatsProduct.toFixed(2);
-  carbohydratesProductElement.textContent = sumCarbohydratesProduct.toFixed(2);
+  const productWeight = event.target.value / 100;
+  const { proteins, fats, carbohydrates, kcal } = calculateNutrientsWeight(productWeight, foundProduct);
+  kcalProduct = kcal;
+  kcalProductElement.textContent = kcal.toFixed(2);  
+  proteinsProductElement.textContent = proteins.toFixed(2);
+  fatsProductElement.textContent = fats.toFixed(2);
+  carbohydratesProductElement.textContent = carbohydrates.toFixed(2);  
+  console.log (kcalProduct)
+  
 });
 
 // function findTotaQuantity (totalQuantity, calculatedParameter, wrapperResult) {
@@ -39,19 +30,23 @@ weightProductSelectElement.addEventListener("input", (event) => {
 //   wrapperResult.textContent = totalQuantity;
 //   return totalKkal;
 // }
+console.log (kcalProduct)
+// add to basket kkal
+addProductBtn.addEventListener("click", function () {
+  totalKcal += kcalProduct;
+  totalResult.textContent = `${totalKcal} Kkal`;
+  return totalKcal;
+  });
 
-addProduct.addEventListener("click", function () {
-  totalKkal += sumKcalProduct;
-  totalResult.textContent = totalKkal + " " + "Kkal";
-  return totalKkal;
-});
 
+
+// update weight of choosed product 
 function updateThis(target, data) {
   target.value = data;
 }
 nameProductElement.addEventListener("click", function () {
   productElement.classList.remove("active");
-  updateThis(weightProductSelectElement, 100);
+  updateThis(weightProductSelectElement, null);
 });
 
 function buildProductElementOption(product) {
@@ -73,4 +68,23 @@ function renderProductElementOptions(products, productsWrapper) {
     const productOptionElement = buildProductElementOption(product);
     productsWrapper.appendChild(productOptionElement);
   });
+}
+function buildPopupProductElement(product) {  
+    productElement.className = "active";
+    nameProductElement.textContent = product.name;
+    imageProductElement.src = product.imageUrl;
+    kcalProductElement.textContent = product.kcal;
+    proteinsProductElement.textContent = product.proteins;
+    fatsProductElement.textContent = product.fats;
+    carbohydratesProductElement.textContent = product.carbohydrates;
+    updateThis(productSelectElement, null);
+}
+
+function calculateNutrientsWeight(weight, product) {
+  return {
+     proteins: weight * product.proteins,
+     fats: weight * product.fats,
+     carbohydrates: weight * product.carbohydrates,
+     kcal: weight * product.kcal,
+  }
 }
