@@ -75,8 +75,13 @@ const products = [
 ];
 
 const basket = [
-  {
-    productId: 1,
-    weight: 300, // в граммах
-  }
+  // {
+  //   productId: 1,
+  //   productName:null;
+  //   weight: 0, // в граммах
+  //   kcal: 0,
+  //   proteins: 0,
+  //   fats: 0,
+  //   carbohydrates: 0,
+  // }
 ];

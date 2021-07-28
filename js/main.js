@@ -15,10 +15,12 @@ let weightProductSelectElement = document.getElementById("product-weight");
 let addProductBtn = document.querySelector("#add-product");
 let totalResult = document.getElementById("total");
 
-
 document.body.onload = init;
 
 function init() {
   renderCategories(categories, categoriesContainer);
   renderProductElementOptions(products, foundProductListEl);
+  // buildCategoryElement(categoryItem);
+  // renderCategories(categories, categoiesWrapper);
+ 
 }
