@@ -3,12 +3,14 @@ let foundProduct = {};
 let kcalProduct = 0;
 let totalKcal = 0;
 let productWeight = 0;
+let basketWrapper = document.querySelector("#total");
+let basket = [];
+
 
 productSelectElement.addEventListener("input", (event) => {
   foundProduct = products.find(
     (product) => product.name === event.target.value
   );
-  console.log(foundProduct);
   if (foundProduct) {
     buildPopupProductElement(foundProduct);
   }
@@ -17,25 +19,37 @@ productSelectElement.addEventListener("input", (event) => {
 weightProductSelectElement.addEventListener("input", (event) => {
    productWeight = event.target.value;
    const { proteins, fats, carbohydrates, kcal} = calculateNutrientsWeight(productWeight,foundProduct);
-  kcalProduct = kcal;
-  updateNutrientsValue (kcal, proteins, fats, carbohydrates);  
+  
+   updateNutrientsValue (kcal, proteins, fats, carbohydrates); 
+   kcalProduct = kcal; 
 });    
 
-addProductBtn.addEventListener("click", () => {
-  addProductToBasket (foundProduct, productWeight);
-  showProductItemAtBasket ();
-  caclBasketTotalValue ();  
-  removeProductFromBasket ();
-  
+addProductBtn.addEventListener("click", () => { 
+  addProductToBasket (foundProduct, productWeight); 
+  showProductItemAtBasket (foundProduct, productWeight); 
+  caclBasketTotalValue ();    
+  console.log (basket);
+// не могу вынести const за пределы этой функции, почему?
+let delProductItem = document.querySelector('.basket-item');
+delProductItem.addEventListener("click",  () => {
+  delProductItem.classList.add('active');
+  let id = delProductItem.dataset.id;
+  delProductFromBasket(id);
+  console.log (basket);
+  caclBasketTotalValue ();
+    
+});  
 });
 
+
+
 // update weight of choosed product
-function updateThis(target, data) {
-  target.value = data;
-}
+// function updateThis(target, data) {
+//   target.value = data;
+// }
 nameProductElement.addEventListener("click", function () {
   productElement.classList.remove("active");
-  updateThis(weightProductSelectElement, null);
+  weightProductSelectElement.value = null;
 });
 
 function buildProductElementOption(product) {
@@ -66,7 +80,7 @@ function buildPopupProductElement(product) {
   proteinsProductElement.textContent = product.proteins;
   fatsProductElement.textContent = product.fats;
   carbohydratesProductElement.textContent = product.carbohydrates;
-  updateThis(productSelectElement, null);
+  productSelectElement.value = null;
 }
 
 function calculateNutrientsWeight(weight, product) {
@@ -98,35 +112,37 @@ function addProductToBasket (productSelected, productWeight) {
   });
 
 }
-function showProductItemAtBasket (basketWrapper) {
-  basketWrapper = document.querySelector("#total");
-  basketWrapper.insertAdjacentHTML('afterend', `     
-           <div class = "basket-item">
-           <div>
-           <img style = "width: 50px; height: 50px" src="${basket[0].image}" alt="">
-           <p>${basket[0].productName}</p>  
-           </div>
-    <ul>
-      <li style = "margin-bottom: 5px;">
-       Ккал  ${kcalProduct}         
-      </li>
-      <li>
-      <a href="#">Вес ${basket[0].weight}</a
-      </li>
-    </ul>
- </div>`)
+function delProductFromBasket (value){
+  basket = basket.filter(item => item.productId !== value)
+  
 }
+function showProductItemAtBasket (item, weight) {  
+  
+    basketWrapper.insertAdjacentHTML('afterend', `     
+    <div class = "basket-item" data-id ="${item.id}">
+    <div>   
+    <img style = "width: 50px; height: 50px" src="${item.imageUrl}" alt="${item.name}">
+    <p>${item.name}</p>  
+    </div>
+<ul>
+<li style = "margin-bottom: 5px;">
+Ккал  ${kcalProduct}         
+</li>
+<li>
+<a href="#">Вес ${weight}</a
+</li>
+</ul>
+</div>`);
+  } 
 
 function caclBasketTotalValue () {
-  totalKcal += kcalProduct;
+  totalKcal = 0;  
+  basket.forEach(
+    (item) => {          
+      totalKcal += item.kcal;
+      return totalKcal;
+    }
+  ); 
   totalResult.textContent = `${totalKcal} kcal`;
   return totalKcal; 
-}
-function removeProductFromBasket (delProductItem) {
-    delProductItem = document.querySelector('.basket-item');
-    delProductItem.addEventListener("click",  () => {
-    delProductItem.classList.add('active');
-    totalKcal = totalKcal - basket[0].kcal; 
-    return totalKcal;
-});
 }
