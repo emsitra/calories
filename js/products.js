@@ -35,7 +35,6 @@ delProductItem.addEventListener("click",  () => {
   delProductItem.classList.add('active');
   let id = delProductItem.dataset.id;
   delProductFromBasket(id);
-  console.log (basket);
   caclBasketTotalValue ();
     
 });  
@@ -113,9 +112,9 @@ function addProductToBasket (productSelected, productWeight) {
 
 }
 function delProductFromBasket (value){
-  basket = basket.filter(item => item.productId !== value)
-  
+  basket = basket.filter(item => item.productId != value);
 }
+
 function showProductItemAtBasket (item, weight) {  
   
     basketWrapper.insertAdjacentHTML('afterend', `     
